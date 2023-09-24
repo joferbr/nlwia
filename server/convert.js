@@ -2,13 +2,12 @@ import fs from "fs"
 import wav from "node-wav"
 import ffmpeg from "fluent-ffmpeg"
 import ffmpegStatic from "ffmpeg-static"
-import { rejects } from "assert"
 
 const filePath = "./tmp/audio.mp4"
 const outputPath = filePath.replace(".mp4", ".wav")
 
 export const convert = () =>
-  new Promise((resolve, rejects) => {
+  new Promise((resolve, reject) => {
     console.log("Convertendo o vídeo...")
 
     ffmpeg.setFfmpegPath(ffmpegStatic)
@@ -31,6 +30,7 @@ export const convert = () =>
       })
       .on("error", (error) => {
         console.log("Erro ao converter o vídeo", error)
-        rejects(error)
+        reject(error)
       })
+      .save(outputPath)
   })

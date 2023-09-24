@@ -12,6 +12,7 @@ form.addEventListener("submit", async (event) => {
 
   if (!videoURL.includes("shorts")) {
     //console.log("Este vídeo não parece ser um short.")
+
     return (content.textContent = "Este vídeo não parece ser um short.")
   }
 
